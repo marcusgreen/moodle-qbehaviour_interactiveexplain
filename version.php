@@ -15,13 +15,17 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Plugin administration pages are defined here.
+ * Version information for the calculated question type.
  *
- * @package     qbehaviour_interactiveexplain
- * @category    admin
- * @copyright   2019 Marcus Green <marcusgreen@mailbox.org>
- * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package    qbehaviour
+ * @subpackage interactiveexplain
+ * @copyright  2019 Marcus Green
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
+$plugin->component = 'qbehaviour_interactiveexplain';
+$plugin->version   = 2019122300;
+$plugin->requires  = 2018112800;
+$plugin->maturity  = MATURITY_STABLE;

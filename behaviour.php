@@ -50,7 +50,7 @@ class qbehaviour_interactiveexplain extends qbehaviour_interactive {
     public function get_expected_data() {
         $explain = [];
         if ($this->qa->get_state()->is_active()) {
-            $explain =[
+            $explain = [
                 'explanation'       => PARAM_RAW,
                 'explanationformat' => PARAM_ALPHANUMEXT
             ];

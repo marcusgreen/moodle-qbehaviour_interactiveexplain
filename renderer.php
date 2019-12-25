@@ -38,11 +38,8 @@ class qbehaviour_interactiveexplain_renderer extends qbehaviour_interactive_rend
 
     public function controls(question_attempt $qa, question_display_options $options) {
         $controls = parent::controls($qa, $options);
-        $explanation = '<details>';
-        $explanation   .= '<summary>'.get_string('problem_with_question_header','qbehaviour_interactiveexplain').'</summary>';
 
-        $explanation .= html_writer::div(html_writer::div($this->explanation($qa, $options), 'answer'),'ablock');
-        $explanation .= '</details>';
+        $explanation = html_writer::div(html_writer::div($this->explanation($qa, $options), 'answer'), 'ablock');
         return $controls . $explanation;
     }
 
@@ -73,15 +70,18 @@ class qbehaviour_interactiveexplain_renderer extends qbehaviour_interactive_rend
      */
     public function explanation_read_only(question_attempt $qa, question_attempt_step $step, context $context) {
         $output = '';
-        $output .= html_writer::tag('p', get_string('pleaseexplain', 'qbehaviour_deferredfeedbackexplain'));
-
         if ($step->has_behaviour_var('explanation')) {
             $formatoptions = new stdClass();
             $formatoptions->para = false;
-            $output .= html_writer::div(format_text($step->get_behaviour_var('explanation'),
-                    $step->get_behaviour_var('explanationformat'), $formatoptions), 'explanation_readonly');
-        }
+            $explanation = $step->get_behaviour_data('explanation');
+                    $step->get_behaviour_var('explanationformat');
+            if ($explanation['explanation'] > '') {
+                $output .= html_writer::tag('p', get_string('explanation', 'qbehaviour_interactiveexplain'));
+                $output .= html_writer::div(format_text($step->get_behaviour_var('explanation'),
+                $step->get_behaviour_var('explanationformat'), $formatoptions), 'explanation_readonly');
+            }
 
+        }
         return $output;
     }
 
@@ -96,6 +96,10 @@ class qbehaviour_interactiveexplain_renderer extends qbehaviour_interactive_rend
         global $CFG;
         require_once($CFG->dirroot . '/repository/lib.php');
 
+        $output = '';
+        $output .= '<details>';
+        $output .= '<summary>' . get_string('problem_with_question_header', 'qbehaviour_interactiveexplain') . '</summary>';
+
         $inputname = $qa->get_behaviour_field_name('explanation');
         $explanation = $step->get_behaviour_var('explanation');
         $explanationformat = $step->get_behaviour_var('explanationformat');
@@ -109,11 +113,10 @@ class qbehaviour_interactiveexplain_renderer extends qbehaviour_interactive_rend
         }
 
         $attobuttons = 'style1 = bold, italic,list = unorderedlist, orderedlist';
-        $editor->use_editor($id, ['context' => $context, 'autosave' => false,'atto:toolbar'=>$attobuttons],
+        $editor->use_editor($id, ['context' => $context, 'autosave' => false, 'atto:toolbar' => $attobuttons],
                 ['return_types' => FILE_EXTERNAL]);
 
-        $output = '';
-        $output .= html_writer::tag('p', get_string('pleaseexplain', 'qbehaviour_interactiveexplain'));
+        $output .= html_writer::tag('p', get_string('giveyourexplanation', 'qbehaviour_interactiveexplain'));
 
         $output .= html_writer::div(html_writer::tag('textarea', s($explanation),
                 array('id' => $id, 'name' => $inputname, 'rows' => 4, 'cols' => 60)));
@@ -130,6 +133,7 @@ class qbehaviour_interactiveexplain_renderer extends qbehaviour_interactive_rend
             $output .= html_writer::select($formats, $inputname . 'format', $explanationformat, '');
         }
         $output .= html_writer::end_div();
+        $output.'</details>';
         return $output;
     }
 }
