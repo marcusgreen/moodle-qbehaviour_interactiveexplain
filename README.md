@@ -19,6 +19,7 @@ However, it may be used in various ways, for example
 
 From the command prompt change to
 yourmoodle/question/behaviour
+
 type:
 ```
 git clone https://github.com/marcusgreen/moodle-qbehaviour_interactiveexplain interactiveexplain
