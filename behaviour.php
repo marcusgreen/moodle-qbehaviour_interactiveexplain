@@ -106,6 +106,6 @@ class qbehaviour_interactiveexplain extends qbehaviour_interactive {
         $a->response = $text;
         $a->explanation = question_utils::to_plain_text($explanation,
                 $step->get_behaviour_var('explanationformat'), array('para' => false));
-        return get_string('responsewithreason', 'qbehaviour_deferredfeedbackexplain', $a);
+        return get_string('responsewithreason', 'qbehaviour_interactiveexplain', $a);
     }
 }

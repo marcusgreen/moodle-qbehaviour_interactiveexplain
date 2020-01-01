@@ -28,8 +28,8 @@ require_once(dirname(__FILE__) . '/../interactive/renderer.php');
 
 
 /**
- * Renderer for outputting parts of a question belonging to the deferred
- * feedback with explanation behaviour.
+ * Renderer for outputting parts of a question belonging to the interactive with
+ * with explanation behaviour.
  *
  * @copyright 2019 Marcus Green
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
