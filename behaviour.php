@@ -15,16 +15,17 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Deferred feedback with explanation question behaviour.
+ * Interactive  explanation question behaviour.
  *
- * This is like the standard deferred feedback behaviour, but with an extra
+ * This is like the interactive with multiple tries  behaviour, but with an extra
  * text input box where the student can explain their reasoning. That part is
  * un-graded, but the teacher could read it later and manually adjust the marks
  * based on it. The student can also review it later, to be reminded what they
- * were thinking at the time they answered the question.
+ * were thinking at the time they answered the question. This is heavily based on
+ * Tim hunts qbehaviour_deferredfeedbackexplain plugin.
  *
- * @package   qbehaviour_deferredfeedbackexplain
- * @copyright 2014 Tim Hunt
+ * @package   qbehaviour_interactiveexplain
+ * @copyright 2019 Marcus Green
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -35,19 +36,19 @@ require_once(dirname(__FILE__) . '/../interactive/behaviour.php');
 
 
 /**
- * Question behaviour for deferred feedback with explanation.
+ * Question behaviour for Interactive with explanation
  *
- * This is like the standard deferred feedback behaviour, but with an extra
+ * This is like the standard Interactive with multiple attempts behaviour, but with an extra
  * text input box where the student can explain their reasoning. That part is
  * un-graded, but the teacher could read it later and manually adjust the marks
  * based on it. The student can also review it later, to be reminded what they
  * were thinking at the time they answered the question.
  *
- * @copyright 2014 Tim Hunt
+ * @copyright 2019 Marcus Green
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class qbehaviour_interactiveexplain extends qbehaviour_interactive {
-    public function get_expected_data() {
+    public function get_expected_data() :array {
         $explain = [];
         if ($this->qa->get_state()->is_active()) {
             $explain = [
