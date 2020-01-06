@@ -1,5 +1,5 @@
 # Interactive with explanation question behaviour
-by Marcus Green
+By Marcus Green.
 Contact Moodle Partner Titus Learning (http://www.tituslerning.com) for custom development and consultancy.
 
 ## Introduction
