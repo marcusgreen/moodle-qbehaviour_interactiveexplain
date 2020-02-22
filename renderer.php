@@ -95,9 +95,13 @@ class qbehaviour_interactiveexplain_renderer extends qbehaviour_interactive_rend
     public function explanation_input(question_attempt $qa, question_attempt_step $step, context $context) {
         global $CFG;
         require_once($CFG->dirroot . '/repository/lib.php');
+        $config = get_config('local_qbconfig');
+
 
         $output = '';
-        $output .= '<details>';
+        if($config->starthidden){
+          $output .= '<details>';
+        }
         $output .= '<summary>' . get_string('problem_with_question_header', 'qbehaviour_interactiveexplain') . '</summary>';
 
         $inputname = $qa->get_behaviour_field_name('explanation');
@@ -112,14 +116,15 @@ class qbehaviour_interactiveexplain_renderer extends qbehaviour_interactive_rend
             $formats[$fid] = $strformats[$fid];
         }
 
-        $attobuttons = 'style1 = bold, italic,list = unorderedlist, orderedlist';
-        $editor->use_editor($id, ['context' => $context, 'autosave' => false, 'atto:toolbar' => $attobuttons],
+       if($config->useeditor) {
+            $editor->use_editor($id, ['context' => $context, 'autosave' => false],
                 ['return_types' => FILE_EXTERNAL]);
+      }
 
         $output .= html_writer::tag('p', get_string('giveyourexplanation', 'qbehaviour_interactiveexplain'));
 
         $output .= html_writer::div(html_writer::tag('textarea', s($explanation),
-                array('id' => $id, 'name' => $inputname, 'rows' => 4, 'cols' => 60)));
+                array('id' => $id, 'name' => $inputname, 'rows' => 4, 'cols' => 80)));
 
         $output .= html_writer::start_div();
         if (count($formats) == 1) {
@@ -133,7 +138,9 @@ class qbehaviour_interactiveexplain_renderer extends qbehaviour_interactive_rend
             $output .= html_writer::select($formats, $inputname . 'format', $explanationformat, '');
         }
         $output .= html_writer::end_div();
-        $output.'</details>';
+        if($config->starthidden){
+          $output .= '</details>';
+        }
         return $output;
     }
 }
