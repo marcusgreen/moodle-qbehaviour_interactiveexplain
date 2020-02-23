@@ -27,3 +27,5 @@ $string['problem_with_question_header'] = '¿Hay algún problema con esta pregun
 $string['problem_with_question_details'] = 'Si Usted tiene retroalimentación para esta pregunta, por favor escríbala debajo. El texto será enviado a su instructor. Usted podrá continuar editando esto cuando Usted haya enviado su respuesta.';
 $string['giveyourexplanation'] = 'Escriba sus razones';
 $string['explanation'] = 'Razón dada';
+$string['editor'] = 'editor';
+$string['editor_text'] = 'Campo simple o editor';
