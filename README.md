@@ -9,7 +9,7 @@ This moodle question behaviour is based heavily on Tim Hunts
 deferred feedback with explanation question behaviour.
 https://github.com/timhunt/moodle-qbehaviour_deferredfeedbackexplain
 
-This question behaviour is  like the interactive with multiple attempts behaviour , but with an additional text box where students can give a reason why they gave the answer they did.
+This question behaviour is  like the interactive with multiple attempts behaviour , but with an additional text box where students can give a reason why they gave the answer they did. It has a requirement that this local plugin is also installed, which allows customisation. https://github.com/marcusgreen/moodle-local_qbconfig
 
 No attempt is made to automatically grade the explanation, nor is it required.
 However, it may be used in various ways, for example
