@@ -13,12 +13,11 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
-
 /**
  * Question behaviour type for interactive with explanation behaviour.
  *
  * @package   qbehaviour_interactiveexplain
- * @copyright 2014 Tim Hunt
+ * @copyright 2020 Marcus Green
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -31,7 +30,7 @@ require_once(dirname(__FILE__) . '/../interactive/behaviourtype.php');
 /**
  * Question behaviour type information for interactive with explanation behaviour.
  *
- * @copyright 2014 Tim Hunt
+ * @copyright 2020 Marcus Green
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class qbehaviour_interactiveexplain_type extends qbehaviour_interactive_type {

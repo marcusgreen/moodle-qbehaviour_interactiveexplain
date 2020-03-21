@@ -13,20 +13,19 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
-
 /**
  * Plugin administration pages are defined here.
  *
  * @package     qbehaviour_interactiveexplain
  * @category    admin
- * @copyright   2019 Marcus Green <marcusgreen@mailbox.org>
+ * @copyright   2020 Marcus Green <marcusgreen@mailbox.org>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 if ($ADMIN->fulltree) {
   $settings->add(new admin_setting_configcheckbox('qbehaviour_interactiveexplain/editor',
-  get_string('editor', 'qbehaviour_interactiveexplain'),
-  get_string('editor_text', 'qbehaviour_interactiveexplain'), 0));
+     get_string('editor', 'qbehaviour_interactiveexplain'),
+     get_string('editor_text', 'qbehaviour_interactiveexplain'), 0));
 }
 

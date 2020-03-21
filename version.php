@@ -13,7 +13,6 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
-
 /**
  * Version information for the calculated question type.
  *
@@ -30,5 +29,5 @@ $plugin->version   = 2019122301;
 $plugin->requires  = 2018112800;
 $plugin->maturity  = MATURITY_STABLE;
 $plugin->dependencies = [
-    'local_qbconfig'=> ANY_VERSION
+    'local_qbconfig' => ANY_VERSION,
 ];

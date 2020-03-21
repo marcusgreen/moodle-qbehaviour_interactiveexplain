@@ -13,7 +13,6 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
-
 /**
  * Defines the renderer for the interactive with explanation behaviour.
  *
@@ -22,10 +21,8 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-
 defined('MOODLE_INTERNAL') || die();
 require_once(dirname(__FILE__) . '/../interactive/renderer.php');
-
 
 /**
  * Renderer for outputting parts of a question belonging to the interactive with
@@ -74,11 +71,12 @@ class qbehaviour_interactiveexplain_renderer extends qbehaviour_interactive_rend
             $formatoptions = new stdClass();
             $formatoptions->para = false;
             $explanation = $step->get_behaviour_data('explanation');
-                    $step->get_behaviour_var('explanationformat');
+            $step->get_behaviour_var('explanationformat');
             if ($explanation['explanation'] > '') {
-                $output .= html_writer::tag('p', get_string('explanation', 'qbehaviour_interactiveexplain'));
+                $output .= html_writer::tag('span', get_string('explanation', 'qbehaviour_interactiveexplain'),
+                 ['class'=>'explanation_header']);
                 $output .= html_writer::div(format_text($step->get_behaviour_var('explanation'),
-                $step->get_behaviour_var('explanationformat'), $formatoptions), 'explanation_readonly');
+                    $step->get_behaviour_var('explanationformat'), $formatoptions), 'explanation_readonly');
             }
 
         }
@@ -97,11 +95,11 @@ class qbehaviour_interactiveexplain_renderer extends qbehaviour_interactive_rend
         require_once($CFG->dirroot . '/repository/lib.php');
         $config = get_config('local_qbconfig');
 
-
         $output = '';
-        if($config->starthidden){
-          $output .= '<details>';
+        if ($config->starthidden) {
+            $output .= '<details>';
         }
+
         $output .= '<summary>' . get_string('problem_with_question_header', 'qbehaviour_interactiveexplain') . '</summary>';
 
         $inputname = $qa->get_behaviour_field_name('explanation');
@@ -116,21 +114,21 @@ class qbehaviour_interactiveexplain_renderer extends qbehaviour_interactive_rend
             $formats[$fid] = $strformats[$fid];
         }
 
-       if($config->useeditor) {
+        if ($config->useeditor) {
             $editor->use_editor($id, ['context' => $context, 'autosave' => false],
                 ['return_types' => FILE_EXTERNAL]);
-      }
+        }
 
         $output .= html_writer::tag('p', get_string('giveyourexplanation', 'qbehaviour_interactiveexplain'));
 
         $output .= html_writer::div(html_writer::tag('textarea', s($explanation),
-                array('id' => $id, 'name' => $inputname, 'rows' => 4, 'cols' => 80)));
+            ['id' => $id, 'name' => $inputname, 'rows' => 4, 'cols' => 80]));
 
         $output .= html_writer::start_div();
         if (count($formats) == 1) {
             reset($formats);
             $output .= html_writer::empty_tag('input', array('type' => 'hidden',
-                    'name' => $inputname . 'format', 'value' => key($formats)));
+                'name' => $inputname . 'format', 'value' => key($formats)));
 
         } else {
             $output .= html_writer::label(get_string('format'), 'menu' . $inputname . 'format', false);
@@ -138,9 +136,9 @@ class qbehaviour_interactiveexplain_renderer extends qbehaviour_interactive_rend
             $output .= html_writer::select($formats, $inputname . 'format', $explanationformat, '');
         }
         $output .= html_writer::end_div();
-        if($config->starthidden){
-          $output .= '</details>';
+        if ($config->starthidden) {
+            $output .= '</details>';
         }
         return $output;
-    }
+      }
 }
