@@ -74,7 +74,7 @@ class qbehaviour_interactiveexplain_renderer extends qbehaviour_interactive_rend
             $step->get_behaviour_var('explanationformat');
             if ($explanation['explanation'] > '') {
                 $output .= html_writer::tag('span', get_string('explanation', 'qbehaviour_interactiveexplain'),
-                 ['class'=>'explanation_header']);
+                 ['class' => 'explanation_header']);
                 $output .= html_writer::div(format_text($step->get_behaviour_var('explanation'),
                     $step->get_behaviour_var('explanationformat'), $formatoptions), 'explanation_readonly');
             }
@@ -140,5 +140,5 @@ class qbehaviour_interactiveexplain_renderer extends qbehaviour_interactive_rend
             $output .= '</details>';
         }
         return $output;
-      }
+    }
 }
