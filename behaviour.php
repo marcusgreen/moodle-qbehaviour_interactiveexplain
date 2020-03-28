@@ -49,12 +49,12 @@ require_once(dirname(__FILE__) . '/../interactive/behaviour.php');
  * @copyright 2020 Marcus Green
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
- class qbehaviour_interactiveexplain extends qbehaviour_interactive {
-   /**
-    * What fields are expected
-    *
-    * @return array
-    */
+class qbehaviour_interactiveexplain extends qbehaviour_interactive {
+    /**
+     * What fields are expected
+     *
+     * @return array
+     */
     public function get_expected_data() :array {
         $explain = [];
         if ($this->qa->get_state()->is_active()) {
@@ -122,17 +122,16 @@ require_once(dirname(__FILE__) . '/../interactive/behaviour.php');
             $pendingstep->set_new_response_summary($this->add_explanation(
                     $pendingstep->get_new_response_summary(), $explanationstep));
         }
-
         return $result;
     }
-/**
- * Add the text from the explanation/reason textarea
- *
- * @param string $text
- * @param question_attempt_step $step
- * @return string
- */
-    protected function add_explanation($text, question_attempt_step $step) : string{
+    /**
+     * Add the text from the explanation/reason textarea
+     *
+     * @param string $text
+     * @param question_attempt_step $step
+     * @return string
+     */
+    protected function add_explanation($text, question_attempt_step $step) : string {
         $explanation = $step->get_behaviour_var('explanation');
         if (!$explanation) {
             return $text;
