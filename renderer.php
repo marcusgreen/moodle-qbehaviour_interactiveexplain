@@ -25,17 +25,24 @@ defined('MOODLE_INTERNAL') || die();
 require_once(dirname(__FILE__) . '/../interactive/renderer.php');
 
 /**
- * Renderer for outputting parts of a question belonging to the interactive with
- * with explanation behaviour.
+ * Output parts of a question belonging to the interactive with explanation
  *
  * @copyright 2019 Marcus Green
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class qbehaviour_interactiveexplain_renderer extends qbehaviour_interactive_renderer {
 
-    public function controls(question_attempt $qa, question_display_options $options) {
-        $controls = parent::controls($qa, $options);
 
+    /**
+     * Add controls associated with the explanation
+     * headings textarea etc
+     *
+     * @param question_attempt $qa
+     * @param question_display_options $options
+     * @return string
+     */
+    public function controls(question_attempt $qa, question_display_options $options) : string {
+        $controls = parent::controls($qa, $options);
         $explanation = html_writer::div(html_writer::div($this->explanation($qa, $options), 'answer'), 'ablock');
         return $controls . $explanation;
     }
@@ -52,20 +59,20 @@ class qbehaviour_interactiveexplain_renderer extends qbehaviour_interactive_rend
         if (empty($options->readonly)) {
             $answer = $this->explanation_input($qa, $step, $options->context);
         } else {
-            $answer = $this->explanation_read_only($qa, $step, $options->context);
+            $answer = $this->explanation_read_only($step);
         }
 
         return $answer;
     }
 
+
     /**
      * Render the explanation in read-only form.
-     * @param question_attempt $qa a question attempt.
-     * @param question_attempt_setp $step from which to get the current explanation.
-     * @param question_display_options $options controls what should and should not be displayed.
-     * @return string HTML fragment.
+     *
+     * @param question_attempt_step $step from which to get the current explanation.
+     * @return string
      */
-    public function explanation_read_only(question_attempt $qa, question_attempt_step $step, context $context) {
+    public function explanation_read_only(question_attempt_step $step) : string {
         $output = '';
         if ($step->has_behaviour_var('explanation')) {
             $formatoptions = new stdClass();
@@ -86,11 +93,11 @@ class qbehaviour_interactiveexplain_renderer extends qbehaviour_interactive_rend
     /**
      * Render the explanation in a HTML editor.
      * @param question_attempt $qa a question attempt.
-     * @param question_attempt_setp $step from which to get the current explanation.
-     * @param question_display_options $options controls what should and should not be displayed.
+     * @param question_attempt_step $step from which to get the current explanation.
+     * @param context $context
      * @return string HTML fragment.
      */
-    public function explanation_input(question_attempt $qa, question_attempt_step $step, context $context) {
+    public function explanation_input(question_attempt $qa, question_attempt_step $step, context $context) :string {
         global $CFG;
         require_once($CFG->dirroot . '/repository/lib.php');
         $config = get_config('local_qbconfig');
