@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 /**
- * Version information for the calculated question type.
+ * Version information for the interactive with explanation question behaviour.
  *
  * @package    question_behaviour
  * @subpackage interactiveexplain
@@ -26,7 +26,7 @@ defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'qbehaviour_interactiveexplain';
 $plugin->version   = 2020032700;
-$plugin->requires  = 2018112800;
+$plugin->requires  = 2019011100; // Moodle 3.6.0.
 $plugin->maturity  = MATURITY_STABLE;
 $plugin->dependencies = [
     'local_qbconfig' => ANY_VERSION,
