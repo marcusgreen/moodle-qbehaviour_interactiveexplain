@@ -21,7 +21,9 @@
  * @copyright   2019 Marcus Green <marcusgreen@mailbox.org>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+
 defined('MOODLE_INTERNAL') || die();
+
 $string['pluginname'] = 'Interactivo con explicación';
 $string['problem_with_question_header'] = '¿Hay algún problema con esta pregunta? Envíe aquí retroalimentación a su instructor.';
 $string['problem_with_question_details'] = 'Si Usted tiene retroalimentación para esta pregunta, por favor escríbala debajo. El texto será enviado a su instructor. Usted podrá continuar editando esto cuando Usted haya enviado su respuesta.';
