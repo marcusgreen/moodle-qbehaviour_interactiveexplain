@@ -16,17 +16,18 @@
 /**
  * Version information for the interactive with explanation question behaviour.
  *
- * @package    question_behaviour
+ * @package    qbehaviour
  * @subpackage interactiveexplain
- * @copyright  2019 Marcus Green
+ * @copyright  2020 Marcus Green
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'qbehaviour_interactiveexplain';
-$plugin->version   = 2020032700;
+$plugin->version   = 2020033000;
 $plugin->requires  = 2018120300; // Moodle 3.6.0.
+$plugin->release = '0.6';
 $plugin->maturity  = MATURITY_STABLE;
 $plugin->dependencies = [
     'local_qbconfig' => ANY_VERSION,

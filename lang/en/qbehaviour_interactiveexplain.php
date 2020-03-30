@@ -18,7 +18,7 @@
  *
  * @package     qbehaviour_interactiveexplain
  * @category    string
- * @copyright   2019 Marcus Green <marcusgreen@mailbox.org>
+ * @copyright   2020 Marcus Green <marcusgreen@mailbox.org>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -32,6 +32,8 @@ $string['explanation'] = 'Reason given';
 $string['responsewithreason'] = 'Response with reason';
 $string['editor'] = 'editor';
 $string['editor_text'] = 'Plain field or editor';
+$string['privacy:metadata'] = 'The Interactive with explanation question behaviour plugin does not store any personal data.';
+
 
 
 
