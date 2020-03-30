@@ -16,8 +16,7 @@
 /**
  * Version information for the interactive with explanation question behaviour.
  *
- * @package    qbehaviour
- * @subpackage interactiveexplain
+ * @package    qbehaviour_interactiveexplain
  * @copyright  2020 Marcus Green
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
