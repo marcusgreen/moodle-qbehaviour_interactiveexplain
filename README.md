@@ -8,7 +8,7 @@ Contact Moodle Partner Titus Learning (http://www.tituslerning.com) for custom d
 This moodle question behaviour is based heavily on Tim Hunts
 deferred feedback with explanation question behaviour.
 https://github.com/timhunt/moodle-qbehaviour_deferredfeedbackexplain
-It has a requirement that this local plugin is also installed, which allows customisation. https://github.com/marcusgreen/moodle-local_qbconfig
+It has a requirement that this local plugin is also installed, which allows customisation. https://github.com/marcusgreen/moodle-local_qbehaviour_interactiveexplain
 
 This behaviour is  like the interactive with multiple attempts behaviour , but with an additional text box where students can give a reason why they gave the answer they did.
 No attempt is made to automatically grade the explanation, nor is it required.

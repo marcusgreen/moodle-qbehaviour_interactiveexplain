@@ -100,7 +100,7 @@ class qbehaviour_interactiveexplain_renderer extends qbehaviour_interactive_rend
     public function explanation_input(question_attempt $qa, question_attempt_step $step, context $context) :string {
         global $CFG;
         require_once($CFG->dirroot . '/repository/lib.php');
-        $config = get_config('local_qbconfig');
+        $config = get_config('local_qbehaviour_interactiveexplain');
 
         $output = '';
         if ($config->starthidden) {
