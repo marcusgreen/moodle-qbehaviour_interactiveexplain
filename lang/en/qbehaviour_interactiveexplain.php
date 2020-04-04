@@ -25,13 +25,6 @@
 defined('MOODLE_INTERNAL') || die();
 
 $string['pluginname'] = 'Interactive with explanation';
-$string['problem_with_question_header'] = 'Is there a problem with this question? Send feedback to your instructor here.';
-$string['problem_with_question_details'] = 'If you have feedback for this question, please type it below. The text will be sent to your instructor. You will be able to continue editing this when you have submitted your answer.';
-$string['giveyourexplanation'] = 'Give your reasons';
-$string['explanation'] = 'Reason given';
-$string['responsewithreason'] = 'Response with reason';
-$string['editor'] = 'editor';
-$string['editor_text'] = 'Plain field or editor';
 $string['privacy:metadata'] = 'The Interactive with explanation question behaviour plugin does not store any personal data.';
 
 
