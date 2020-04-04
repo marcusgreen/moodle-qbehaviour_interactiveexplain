@@ -80,7 +80,7 @@ class qbehaviour_interactiveexplain_renderer extends qbehaviour_interactive_rend
             $explanation = $step->get_behaviour_data('explanation');
             $step->get_behaviour_var('explanationformat');
             if ($explanation['explanation'] > '') {
-                $output .= html_writer::tag('span', get_string('explanation', 'qbehaviour_interactiveexplain'),
+                $output .= html_writer::tag('span', get_string('explanation', 'local_qbehaviour_interactiveexplain'),
                  ['class' => 'explanation_header']);
                 $output .= html_writer::div(format_text($step->get_behaviour_var('explanation'),
                     $step->get_behaviour_var('explanationformat'), $formatoptions), 'explanation_readonly');
@@ -107,7 +107,7 @@ class qbehaviour_interactiveexplain_renderer extends qbehaviour_interactive_rend
             $output .= '<details>';
         }
 
-        $output .= '<summary>' . get_string('problem_with_question_header', 'qbehaviour_interactiveexplain') . '</summary>';
+        $output .= '<summary>' . get_string('problem_with_question_header', 'local_qbehaviour_interactiveexplain') . '</summary>';
 
         $inputname = $qa->get_behaviour_field_name('explanation');
         $explanation = $step->get_behaviour_var('explanation');
@@ -126,7 +126,7 @@ class qbehaviour_interactiveexplain_renderer extends qbehaviour_interactive_rend
                 ['return_types' => FILE_EXTERNAL]);
         }
 
-        $output .= html_writer::tag('p', get_string('giveyourexplanation', 'qbehaviour_interactiveexplain'));
+        $output .= html_writer::tag('p', get_string('giveyourexplanation', 'local_qbehaviour_interactiveexplain'));
 
         $output .= html_writer::div(html_writer::tag('textarea', s($explanation),
             ['id' => $id, 'name' => $inputname, 'rows' => 4, 'cols' => 80]));
