@@ -24,6 +24,6 @@
 defined('MOODLE_INTERNAL') || die();
 if ($ADMIN->fulltree) {
     $settings->add(new admin_setting_configcheckbox('qbehaviour_interactiveexplain/editor',
-     get_string('editor', 'qbehaviour_interactiveexplain'),
-     get_string('editor_text', 'qbehaviour_interactiveexplain'), 0));
+     get_string('pluginname', 'qbehaviour_interactiveexplain'),
+     get_string('pluginname', 'qbehaviour_interactiveexplain'), 0));
 }
