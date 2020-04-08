@@ -31,3 +31,4 @@ $string['giveyourexplanation'] = 'Escriba sus razones';
 $string['explanation'] = 'Razón dada';
 $string['editor'] = 'editor';
 $string['editor_text'] = 'Campo simple o editor';
+$string['privacy:metadata'] = 'El plugin de Comportamiento de pregunta interactivo con explicación no almacena ningún dato personal.';
