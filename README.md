@@ -29,5 +29,5 @@ type:
 git clone https://github.com/marcusgreen/moodle-qbehaviour_interactiveexplain interactiveexplain
 
 ```
-Documentation at https://docs.moodle.org/38/en/qbehaviour_interactiveexplain
+Documentation at https://docs.moodle.org/en/qbehaviour_interactiveexplain
 
