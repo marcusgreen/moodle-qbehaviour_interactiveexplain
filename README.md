@@ -4,8 +4,10 @@ Contact Moodle Partner Titus Learning (http://www.tituslerning.com) for custom d
 
 ## Introduction
 
+This moodle question behaviour can be installed directly from the plugins database at
+https://moodle.org/plugins/qbehaviour_interactiveexplain.
 
-This moodle question behaviour is based heavily on Tim Hunts
+This plugin is based heavily on Tim Hunts
 deferred feedback with explanation question behaviour.
 https://github.com/timhunt/moodle-qbehaviour_deferredfeedbackexplain
 It has a requirement that this local plugin is also installed, which allows customisation. https://github.com/marcusgreen/moodle-local_qbehaviour_interactiveexplain
