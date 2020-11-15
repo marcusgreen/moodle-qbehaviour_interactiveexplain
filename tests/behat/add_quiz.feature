@@ -1,4 +1,4 @@
-@qbehaviour_interactiveexplain @javascript
+@qbehaviour @qbehaviour_interactiveexplain @javascript
 
 Feature: Add a quiz with interactiveexplain behaviour
   In order to evaluate students
@@ -27,8 +27,6 @@ Feature: Add a quiz with interactiveexplain behaviour
     And I navigate to "Edit settings" in current page administration
     And I expand all fieldsets
     And I set the field "How questions behave" to "Interactive with explanation"
-    And I pause
-    #And I set the field with xpath "//input[@id='id_generalfeedbackduring']" to "1"
     And I press "Save and return to course"
 
 #############################################################################
@@ -36,16 +34,38 @@ Feature: Add a quiz with interactiveexplain behaviour
 #on the current question and is not applied to every question as happened
 #with an early bug
 ##############################################################################
-    And I add a "Gapfill" question to the "Gapfill single page quiz" quiz with:
-      | Question name                      | First question                         |
-      | Question text                      | The [cat] sat on the [mat]               |
-      | General feedback                   | Question1 feedback |
+      And I add a "Multiple choice" to the "Interactive behaviour quiz" quiz with:
+      | Question name            | Multi-choice-001                   |
+      | Question text            | Find the capital cities in Europe. |
+      | General feedback         | Paris and London                   |
+      | One or multiple answers? | Multiple answers allowed           |
+      | Choice 1                 | Tokyo                              |
+      | Choice 2                 | Spain                              |
+      | Choice 3                 | London                             |
+      | Choice 4                 | Barcelona                          |
+      | Choice 5                 | Paris                              |
+      | id_fraction_0            | None                               |
+      | id_fraction_1            | None                               |
+      | id_fraction_2            | 50%                                |
+      | id_fraction_3            | None                               |
+      | id_fraction_4            | 50%                                |
+      | Hint 1                   | First hint                         |
+      | Hint 2                   | Second hint                        |
 
-    And I add a "Gapfill" question to the "Gapfill single page quiz" quiz with:
-      | Question name                      | Second question                         |
-      | Question text                      | The [cow] jumped over the [moon]        |
-      | General feedback                   | Question1 feedback |
+    And I add a "Short answer" to the "Interactive behaviour quiz" quiz with:
+      | Question name        | shortanswer-001                           |
+      | Question text        | What is the national langauge in France?  |
+      | General feedback     | The national langauge in France is French |
+      | Default mark         | 1                                         |
+      | Case sensitivity     | No, case is unimportant                   |
+      | id_answer_0          | French                                    |
+      | id_fraction_0        | 100%                                      |
+      | id_feedback_0        | Well done. French is correct.             |
+      | id_answer_1          | *                                         |
+      | id_fraction_1        | None                                      |
+      | id_feedback_1        | Your answer is incorrect.                 |
 
+    And I pause
     And I log out
     And I log in as "student1"
     And I am on "Course 1" course homepage
