@@ -107,7 +107,7 @@ class qbehaviour_interactiveexplain_renderer extends qbehaviour_interactive_rend
             $output .= '<details>';
         }
 
-        $output .= '<summary>' . get_string('problem_with_question_header', 'local_qbehaviour_interactiveexplain') . '</summary>';
+        $output .= '<summary>' . $config->problemheader . '</summary>';
 
         $inputname = $qa->get_behaviour_field_name('explanation');
         $explanation = $step->get_behaviour_var('explanation');
@@ -126,10 +126,10 @@ class qbehaviour_interactiveexplain_renderer extends qbehaviour_interactive_rend
                 ['return_types' => FILE_EXTERNAL]);
         }
 
-        $output .= html_writer::tag('p', get_string('giveyourexplanation', 'local_qbehaviour_interactiveexplain'));
+        $output .= html_writer::tag('p', $config->problemheaderdetails);
 
         $output .= html_writer::div(html_writer::tag('textarea', s($explanation),
-            ['id' => $id, 'name' => $inputname, 'rows' => 4, 'cols' => 80]));
+        ['id' => $id, 'name' => $inputname, 'class' => 'form-control', 'rows' => 4, 'cols' => 80]));
 
         $output .= html_writer::start_div();
         if (count($formats) == 1) {

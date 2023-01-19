@@ -1,6 +1,6 @@
 # Interactive with explanation question behaviour [![Build Status](https://travis-ci.com/marcusgreen/moodle-qbehaviour_interactiveexplain.svg?branch=master)](https://travis-ci.com/marcusgreen/moodle-qbehaviour_interactiveexplain)
 By Marcus Green.
-Contact Moodle Partner Titus Learning (http://www.tituslerning.com) for custom development and consultancy.
+Contact Moodle Partner Titus Learning (https://www.catalyst-eu.net/) for custom development and consultancy.
 
 ## Introduction
 

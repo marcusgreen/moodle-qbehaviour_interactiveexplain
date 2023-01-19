@@ -24,9 +24,9 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'qbehaviour_interactiveexplain';
-$plugin->version   = 2020061300;
+$plugin->version   = 2023011900;
 $plugin->requires  = 2018120300; // Moodle 3.6.0.
-$plugin->release = '0.9';
+$plugin->release = '1.0';
 $plugin->maturity  = MATURITY_STABLE;
 $plugin->dependencies = [
   'local_qbehaviour_interactiveexplain' => ANY_VERSION,

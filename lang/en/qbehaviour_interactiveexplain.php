@@ -27,6 +27,3 @@ defined('MOODLE_INTERNAL') || die();
 $string['pluginname'] = 'Interactive with explanation';
 $string['privacy:metadata'] = 'The Interactive with explanation question behaviour plugin does not store any personal data.';
 $string['responsewithreason'] = '{$a->response} | Reason: {$a->explanation}';
-
-
-
