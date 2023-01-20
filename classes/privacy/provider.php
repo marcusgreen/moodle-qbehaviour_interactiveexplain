@@ -24,8 +24,6 @@
 
 namespace qbehaviour_interactiveexplain\privacy;
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Privacy Subsystem for qbehaviour_interactiveexplain implementing null_provider.
  *
