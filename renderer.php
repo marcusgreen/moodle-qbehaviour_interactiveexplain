@@ -129,7 +129,7 @@ class qbehaviour_interactiveexplain_renderer extends qbehaviour_interactive_rend
         $output .= html_writer::tag('p', $config->problemheaderdetails);
 
         $output .= html_writer::div(html_writer::tag('textarea', s($explanation),
-        ['id' => $id, 'name' => $inputname, 'class' => 'form-control', 'rows' => 4, 'cols' => 80]));
+        ['id' => $id, 'name' => $inputname, 'class' => 'form-control', 'rows' => 5, 'cols' => 60]));
 
         $output .= html_writer::start_div();
         if (count($formats) == 1) {
