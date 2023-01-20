@@ -30,12 +30,12 @@ use question_hint_with_parts;
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class walkthrough_test extends \qbehaviour_walkthrough_test_base {
-        /**
-         * Test a multiple choice question
-         * @covers process_submission
-         *
-         * @return void
-         */
+    /**
+     * Test a multiple choice question
+     * @covers ::process_submission()
+     *
+     * @return void
+     */
     public function test_interactiveexplain_feedback_multichoice_right() {
         global $PAGE;
         // Required to init a text editor.
