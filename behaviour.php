@@ -13,6 +13,7 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
 /**
  * Interactive  explanation question behaviour.
  *
@@ -55,12 +56,12 @@ class qbehaviour_interactiveexplain extends qbehaviour_interactive {
      *
      * @return array
      */
-    public function get_expected_data() :array {
+    public function get_expected_data(): array {
         $explain = [];
         if ($this->qa->get_state()->is_active()) {
             $explain = [
                 'explanation'       => PARAM_RAW,
-                'explanationformat' => PARAM_ALPHANUMEXT
+                'explanationformat' => PARAM_ALPHANUMEXT,
             ];
         }
         $expected = parent::get_expected_data();
@@ -74,13 +75,13 @@ class qbehaviour_interactiveexplain extends qbehaviour_interactive {
      *
      * @return array
      */
-    protected function get_our_resume_data() :array {
+    protected function get_our_resume_data(): array {
         $lastexplanation = $this->qa->get_last_behaviour_var('explanation');
         if ($lastexplanation) {
-            return array(
+            return [
                 '-explanation'       => $lastexplanation,
                 '-explanationformat' => $this->qa->get_last_behaviour_var('explanationformat'),
-            );
+            ];
         } else {
             return [];
         }
@@ -114,13 +115,15 @@ class qbehaviour_interactiveexplain extends qbehaviour_interactive {
      * @param question_attempt_pending_step $pendingstep
      * @return boolean
      */
-    public function process_action(question_attempt_pending_step $pendingstep) : bool {
+    public function process_action(question_attempt_pending_step $pendingstep): bool {
         $result = parent::process_action($pendingstep);
 
         if ($result == question_attempt::KEEP && $pendingstep->response_summary_changed()) {
             $explanationstep = $this->qa->get_last_step_with_behaviour_var('explanation');
             $pendingstep->set_new_response_summary($this->add_explanation(
-                    $pendingstep->get_new_response_summary(), $explanationstep));
+                $pendingstep->get_new_response_summary(),
+                $explanationstep
+            ));
         }
         return $result;
     }
@@ -131,7 +134,7 @@ class qbehaviour_interactiveexplain extends qbehaviour_interactive {
      * @param question_attempt_step $step
      * @return string
      */
-    protected function add_explanation($text, question_attempt_step $step) : string {
+    protected function add_explanation($text, question_attempt_step $step): string {
         $explanation = $step->get_behaviour_var('explanation');
         if (!$explanation) {
             return $text;
@@ -139,8 +142,11 @@ class qbehaviour_interactiveexplain extends qbehaviour_interactive {
 
         $a = new stdClass();
         $a->response = $text;
-        $a->explanation = question_utils::to_plain_text($explanation,
-                $step->get_behaviour_var('explanationformat'), array('para' => false));
+        $a->explanation = question_utils::to_plain_text(
+            $explanation,
+            $step->get_behaviour_var('explanationformat'),
+            ['para' => false]
+        );
         return get_string('responsewithreason', 'qbehaviour_interactiveexplain', $a);
     }
 }

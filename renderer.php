@@ -13,6 +13,7 @@
 //
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
 /**
  * Defines the renderer for the interactive with explanation behaviour.
  *
@@ -31,8 +32,6 @@ require_once(dirname(__FILE__) . '/../interactive/renderer.php');
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class qbehaviour_interactiveexplain_renderer extends qbehaviour_interactive_renderer {
-
-
     /**
      * Add controls associated with the explanation
      * headings textarea etc
@@ -41,7 +40,7 @@ class qbehaviour_interactiveexplain_renderer extends qbehaviour_interactive_rend
      * @param question_display_options $options
      * @return string
      */
-    public function controls(question_attempt $qa, question_display_options $options) : string {
+    public function controls(question_attempt $qa, question_display_options $options): string {
         $controls = parent::controls($qa, $options);
         $explanation = html_writer::div(html_writer::div($this->explanation($qa, $options), 'answer'), 'ablock');
         return $controls . $explanation;
@@ -72,7 +71,7 @@ class qbehaviour_interactiveexplain_renderer extends qbehaviour_interactive_rend
      * @param question_attempt_step $step from which to get the current explanation.
      * @return string
      */
-    public function explanation_read_only(question_attempt_step $step) : string {
+    public function explanation_read_only(question_attempt_step $step): string {
         $output = '';
         if ($step->has_behaviour_var('explanation')) {
             $formatoptions = new stdClass();
@@ -80,12 +79,17 @@ class qbehaviour_interactiveexplain_renderer extends qbehaviour_interactive_rend
             $explanation = $step->get_behaviour_data('explanation');
             $step->get_behaviour_var('explanationformat');
             if ($explanation['explanation'] > '') {
-                $output .= html_writer::tag('span', get_string('explanation', 'local_qbehaviour_interactiveexplain'),
-                 ['class' => 'explanation_header']);
-                $output .= html_writer::div(format_text($step->get_behaviour_var('explanation'),
-                    $step->get_behaviour_var('explanationformat'), $formatoptions), 'explanation_readonly');
+                $output .= html_writer::tag(
+                    'span',
+                    get_string('explanation', 'local_qbehaviour_interactiveexplain'),
+                    ['class' => 'explanation_header']
+                );
+                $output .= html_writer::div(format_text(
+                    $step->get_behaviour_var('explanation'),
+                    $step->get_behaviour_var('explanationformat'),
+                    $formatoptions
+                ), 'explanation_readonly');
             }
-
         }
         return $output;
     }
@@ -97,7 +101,7 @@ class qbehaviour_interactiveexplain_renderer extends qbehaviour_interactive_rend
      * @param context $context
      * @return string HTML fragment.
      */
-    public function explanation_input(question_attempt $qa, question_attempt_step $step, context $context) :string {
+    public function explanation_input(question_attempt $qa, question_attempt_step $step, context $context): string {
         global $CFG;
         require_once($CFG->dirroot . '/repository/lib.php');
         $config = get_config('local_qbehaviour_interactiveexplain');
@@ -122,21 +126,26 @@ class qbehaviour_interactiveexplain_renderer extends qbehaviour_interactive_rend
         }
 
         if ($config->useeditor) {
-            $editor->use_editor($id, ['context' => $context, 'autosave' => false],
-                ['return_types' => FILE_EXTERNAL]);
+            $editor->use_editor(
+                $id,
+                ['context' => $context, 'autosave' => false],
+                ['return_types' => FILE_EXTERNAL]
+            );
         }
 
         $output .= html_writer::tag('p', $config->problemheaderdetails);
 
-        $output .= html_writer::div(html_writer::tag('textarea', s($explanation),
-        ['id' => $id, 'name' => $inputname, 'class' => 'form-control', 'rows' => 5, 'cols' => 60]));
+        $output .= html_writer::div(html_writer::tag(
+            'textarea',
+            s($explanation),
+            ['id' => $id, 'name' => $inputname, 'class' => 'form-control', 'rows' => 5, 'cols' => 60]
+        ));
 
         $output .= html_writer::start_div();
         if (count($formats) == 1) {
             reset($formats);
-            $output .= html_writer::empty_tag('input', array('type' => 'hidden',
-                'name' => $inputname . 'format', 'value' => key($formats)));
-
+            $output .= html_writer::empty_tag('input', ['type' => 'hidden',
+                'name' => $inputname . 'format', 'value' => key($formats)]);
         } else {
             $output .= html_writer::label(get_string('format'), 'menu' . $inputname . 'format', false);
             $output .= ' ';
