@@ -1,4 +1,9 @@
-Version 1.0 of the Moodle Interactive Explain question behaviour January 2023
+### The Moodle Interactive Explain Question behaviour
+
+## Version 1.1 Apr 2026
+Added basic behat test and tested against Moodle 5.2
+
+## Version 1.0  Jan 2023
 
 Created this changelog file.
 

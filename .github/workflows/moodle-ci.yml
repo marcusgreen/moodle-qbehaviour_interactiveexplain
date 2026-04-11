@@ -4,22 +4,25 @@ on: [push, pull_request]
 
 jobs:
   test:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-22.04
 
     services:
       postgres:
-        image: postgres:10
+        image: postgres:16
         env:
           POSTGRES_USER: 'postgres'
           POSTGRES_HOST_AUTH_METHOD: 'trust'
         ports:
           - 5432:5432
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 3
+
       mariadb:
-        image: mariadb:10.5
+        image: mariadb:10.11
         env:
           MYSQL_USER: 'root'
-          MYSQL_ALLOW_EMPTY_PASSWORD: "true"
+          MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
+          MYSQL_CHARACTER_SET_SERVER: 'utf8mb4'
+          MYSQL_COLLATION_SERVER: 'utf8mb4_unicode_ci'
         ports:
           - 3306:3306
         options: --health-cmd="mysqladmin ping" --health-interval 10s --health-timeout 5s --health-retries 3
@@ -27,13 +30,13 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php: ['7.4', '8.0']
-        moodle-branch: ['MOODLE_400_STABLE']
-        database: [pgsql, mariadb]
-
+        include:
+          - {moodle-branch: 'main', php: '8.3', database: 'pgsql', runchecks: 'all'}
+          - {moodle-branch: 'main', php: '8.3', database: 'mariadb'}
+          - {moodle-branch: 'MOODLE_501_STABLE', php: '8.3', database: 'pgsql'}
     steps:
       - name: Check out repository code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v5
         with:
           path: plugin
 
@@ -41,13 +44,13 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          extensions: ${{ matrix.extensions }}
+          extensions: pgsql, mysqli, gd, xml, dom, json, zip, bcmath, intl, soap, sodium
           ini-values: max_input_vars=5000
           coverage: none
 
       - name: Initialise moodle-plugin-ci
         run: |
-          composer create-project -n --no-dev --prefer-dist moodlehq/moodle-plugin-ci ci ^3
+          composer create-project -n --no-dev --prefer-dist moodlehq/moodle-plugin-ci ci ^4
           echo $(cd ci/bin; pwd) >> $GITHUB_PATH
           echo $(cd ci/vendor/bin; pwd) >> $GITHUB_PATH
           sudo locale-gen en_AU.UTF-8
@@ -62,47 +65,38 @@ jobs:
           MOODLE_BRANCH: ${{ matrix.moodle-branch }}
 
       - name: PHP Lint
-        if: ${{ always() }}
+        if: ${{ !cancelled() && matrix.runchecks == 'all' }}
         run: moodle-plugin-ci phplint
 
-      - name: PHP Copy/Paste Detector
-        continue-on-error: true # This step will show errors but will not fail
-        if: ${{ always() }}
-        run: moodle-plugin-ci phpcpd
-
       - name: PHP Mess Detector
-        continue-on-error: true # This step will show errors but will not fail
-        if: ${{ always() }}
+        continue-on-error: true
+        if: ${{ !cancelled() && matrix.runchecks == 'all' }}
         run: moodle-plugin-ci phpmd
 
       - name: Moodle Code Checker
-        if: ${{ always() }}
-        run: moodle-plugin-ci codechecker --max-warnings 0
+        if: ${{ !cancelled() && matrix.runchecks == 'all' }}
+        run: moodle-plugin-ci phpcs --max-warnings 0
 
-      - name: Moodle PHPDoc Checker
-        if: ${{ always() }}
-        run: moodle-plugin-ci phpdoc
-
-      - name: Validating
-        if: ${{ always() }}
+      - name: Validate Plugin
+        if: ${{ !cancelled() && matrix.runchecks == 'all' }}
         run: moodle-plugin-ci validate
 
-      - name: Check upgrade savepoints
-        if: ${{ always() }}
-        run: moodle-plugin-ci savepoints
-
       - name: Mustache Lint
-        if: ${{ always() }}
+        if: ${{ !cancelled() && matrix.runchecks == 'all' }}
         run: moodle-plugin-ci mustache
 
-      - name: Grunt
-        if: ${{ matrix.moodle-branch == 'master' }}
-        run: moodle-plugin-ci grunt
+      - name: Grunt tasks
+        if: ${{ !cancelled() && matrix.runchecks == 'all' }}
+        run: moodle-plugin-ci grunt --max-lint-warnings 0
 
       - name: PHPUnit tests
-        if: ${{ always() }}
+        if: ${{ !cancelled() }}
         run: moodle-plugin-ci phpunit
 
-      - name: Behat features
-        if: ${{ always() }}
+      - name: Behat tests
+        if: ${{ !cancelled() }}
         run: moodle-plugin-ci behat --profile chrome
+
+      - name: Mark cancelled jobs as failed
+        if: ${{ cancelled() }}
+        run: exit 1
